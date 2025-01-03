@@ -27,12 +27,6 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Install dotnet ef
-        run: dotnet tool install --global dotnet-ef --version 8.*
-      
-      - name: Create migrations bundle
-        run: dotnet ef migrations bundle --runtime linux-64 -o ${{env.DOTNET_ROOT}}/myapp/migrationsbundle
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -43,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production' 
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -57,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D3DC11B1783046C1B6024EF3FA5CA77C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8EB7E48549FC4052BC5939DB11AB2589 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A45A2AAD97BA40429BD230271ACFE8D8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B27654522AD4443CB94F288FC6DEF4AE }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CA8C3DA5588D499FBBA092B3FB0BEB10 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FCF76C77920742EE9CDB8573672D3338 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
