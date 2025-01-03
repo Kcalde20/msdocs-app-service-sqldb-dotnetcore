@@ -20,7 +20,7 @@ else
     });
 }
 
-// Add services to the container.
+// Add services to the container. asdfasdfas
 builder.Services.AddControllersWithViews();
 
 // Add App Service logging
